@@ -14,3 +14,7 @@ Página a ser criada. Fique atento as tags semânticas.
 </p>
 
 <img src = images/exercicio_preview.png />
+
+<hr>
+
+[Visite o site](https://vivinat.github.io/EX2_31_03/)
