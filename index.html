@@ -1,96 +1,80 @@
-const {MongoClient, ObjectId} = require('mongodb');
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 31/03</title>
+</head>
+<body>
+
+    <nav>
+        <header>
+            <ul>
+                <li><a href="https://unifei.edu.br/">UNIFEI</a></li>
+                <li><a href="https://proex.unifei.edu.br/">PROEX</a></li>
+                <li><a href="https://integraunifei.com/">INTEGRA</a></li>
+            </ul>
+        </header>
+    </nav>
 
 
-async function main(){
-    /**
-     * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
-     * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
-     */
-    const uri = "mongodb+srv://venat:R8Us6VvrNTHBgv8O@sorestonoiscluster.urpzo2g.mongodb.net/?retryWrites=true&w=majority";
+    <h1>Formulário de Apresentação de Projetos de Extensão</h1>
 
-    const client = new MongoClient(uri);
- 
-    try {
-        //await client.connect();
+    <p>Nesse formulário sua equipe deverá preencher os dados do seu projeto de extensão para que a PROEX possa distribuir os stands da forma mais adequada</p>
 
-        //await  listDatabases(client);
+    <main>
+        <form action="#">
+            <section>
+                <fieldset>
+                    <legend>Identificação do Projeto</legend>
 
-        //await searchText(client, '1');
+                    Nome do Projeto<input type="text">
+                    Quantidade de Integrantes<input type="text">
+                    Instituto de Localização<input type="text">
+                </fieldset>
+            </section> 
+            
+            <section>
+                <fieldset>
+                    <legend>Área de Atuação</legend>
+                    <p>Selecione apenas uma opção:</p>
+                    <input type="radio" name="area_atuacao" id="aplicacao_web_mobile" value="aplicacao_web_mobile" checked>
+                    <label for="aplicacao_web_mobile">Aplicação Web/Mobile</label>
+                    <input type="radio" name="area_atuacao" id="desenvolvimento_jogos" value="desenvolvimento_jogos">
+                    <label for="desenvolvimento_jogos">Desenvolvimento de Jogos</label>
+                    <input type="radio" name="area_atuacao" id="drones" value="drones">
+                    <label for="drones">Drones</label>
+                    <input type="radio" name="area_atuacao" id="competicao_robos" value="competicao_robos">
+                    <label for="competicao_robos">Competição de Robôs</label>
+                    <input type="radio" name="area_atuacao" id="contabilidade" value="contabilidade">
+                    <label for="contabilidade">Contabilidade</label>
+                    <input type="radio" name="area_atuacao" id="meteorologia" value="meteorologia">
+                    <label for="meteorologia">Meteorologia</label>
+                </fieldset>
+            </section>
 
-        //await registerUser(client, 'Flavinho', 0, '0');
+            <section>
+                <fieldset>
+                    <legend>Fomento</legend>
+                    <label for="tipo_projeto">Fomento</label>
+                    <select name="tipo_projeto" id="tipo_projeto">
+                    <option value="projeto de extensao">Projeto de Extensão</option>
+                    <option value="empresa junior">Empresa Júnior</option>
+                    </select>
+                </fieldset>
+            </section>
 
-        //await loadUser(client, '641ca0f6dfb3b457e6cad75f');
- 
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await setTimeout(() => {client.close()}, 1500)
-    }
-}
+            <button>Enviar</button>
+        </form>
+    </main>
 
-main().catch(console.error);
-
-
-/*
-	Lista as databases	
-*/
-
-async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
- 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-/*
-	Registra um usuário no banco de dados	
-*/
+    <footer>
+        <p>
+            Feito com &hearts; por <a href="https://github.com/Vivinat"> Vivinat </a> e <a href="https://github.com/WinterDP"> WinterDP </a> 
+        </p>
+    </footer>
 
 
-async function registerUser(client, newName, starterBullets, starterProgression) {
-    const myColl = client.db("PlayerStats").collection("_stats");
-    const doc = { name: newName, bullets: starterBullets, currentProgress: starterProgression};
-    const result = await myColl.insertOne(doc);
-    console.log("A document was inserted with the _id: ${result.insertedId}",);
-}
-
-/*
-	Carrega um usuário do banco de dados
-*/
-
-
-async function loadUser(client, userid){
-
-    var mongo = require('mongodb');
-    var o_id = new mongo.ObjectId(userid);
-
-    const finder = client.db("PlayerStats").collection("_stats").find({'_id': o_id});
- 
-    const results = await finder.toArray();
-
-    console.log(results);
-
-    return results;
-
-}
-
-/*
-	Busca um texto no banco de dados
-*/
-
-async function searchText(client, textId) {
-
-    const cursor = client.db("TextDatabase").collection("_text").find( {"_id" : textId});
-
-    const results = await cursor.toArray();
-
-    if (results.length > 0) {
-        results.forEach((result, i) => {
-            console.log(result);
-                return result;
-        });
-    } else {
-        console.log('Não localizado');
-    }
-
-}
+</body>
+</html>
